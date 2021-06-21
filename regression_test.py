@@ -5,6 +5,7 @@ import pymysql
 from sklearn import linear_model
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.dummy import DummyOperator
 from airflow.utils.dates import days_ago
 
 args = {
@@ -61,5 +62,7 @@ with DAG(
             task_id = 'modeling',
             python_callable=get_result,
     )
+    
+    test_task = DummyOperator(task_id='dummy1')
 
-    run_this
+    run_this >> test_task
