@@ -62,4 +62,4 @@ with DAG(
             python_callable=get_result,
     )
 
-        run_this
+    run_this
